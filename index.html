@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Vue: The great new tool??</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <!--<script type = "text/javascript"  src="index.js"></script>-->
+
+</head>
+
+    <body>
+
+        <!-- Un champs INPUT permettant de mettre à jours le contenu d’une balise <h1></h1>  -->
+
+        <div id="app">
+            <h1>{{ message }}</h1>
+            <label for="message">Message:</label>
+            <input id="message" type="text" v-model="message" />
+            <!--<input v-model="message">-->
+        </div>
+      
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+        <script>
+         var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'test'
+            }
+        });
+        </script>
+
+        <!--Un champs INPUT permettant de mettre à jours le contenu d’une balise <h2></h2>  au clic sur un bouton-->
+        <div id="app2">
+            <h2>{{ message1 }}</h2>
+            <input v-model.lazy="message1">
+        </div>
+
+
+        <script>
+            var app2 = new Vue({
+                el: '#app2',
+                data: {
+                    message1: 'test'
+                }
+            });
+        </script>
+
+        <!--Un bouton permettant d’ajouter la classe “red” au <h1> quand on appuie-->
+        <div id="app3">
+
+            <button @click="active = !active" :aria-pressed="active ? 'true' : 'false'">color me</button>
+            <h1 :class="{ red: active }">Test Red color</h1>
+        </div>
+
+
+        <script>
+            var app3 = new Vue({
+                el: '#app3',
+                data: {
+                active: false
+                }
+            });
+        </script>
+
+        <!--Une checkbox permettant d’ajouter la classe “red” au <h1> quand elle est checked-->
+
+        <div id="app4">
+
+            <label for="r1">Change colors</label>
+            <input type="checkbox" v-model="class1" id="r1">
+            <br><br>
+            <div v-bind:class="{'class1': class1}">
+                <h1>Test</h1>
+            </div>
+
+        </div>
+
+
+        <script>
+            var app4 = new Vue({
+                el: '#app4',
+                data: {
+                    class1: false
+                }
+            });
+        </script>
+
+
+        <!--un bouton pour afficher / masquer une image -->
+
+        <div id="app5">
+            <button @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
+                show picture
+            </button>
+            <img src="Bonbons.gif" v-if="show"></img>
+        </div>
+
+        <script>
+             new Vue({
+                el: '#app5',
+                data: {
+                show: true
+                }
+             });
+        </script>
+
+        <!--une checkbox pour afficher / masquer une image -->
+
+        <div id="app6">
+            <label for="r1">show picture</label>
+            <input type="checkbox" v-model="show" id="r1">
+            <br><br>
+            <div v-bind:class="{'show': show}">
+                <img src="Bonbons.gif"v-if="show"></img>
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app6',
+                data: {
+                show: true
+                }
+            });
+        </script>
+
+   </body>
+</html>
